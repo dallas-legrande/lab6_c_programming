@@ -13,23 +13,21 @@
 
 void int_or_double(char *str)
 {
-	typedef enum {false, true} bool;
-	bool is_integer = true;
-	int i;
-	for(i = 0; i < strlen(str); i++) //go through each character in the string looking for a period and the period is not the last character
-	    {
-		if(str[i] == 46 && i != strlen(str)-1)// if there is a period and it is not the last character then it is not an integer
-		    {
-			is_integer = false;
-		    }
-	    }
-	if(is_integer){	//if it's an integer print this 
-	    printf("String %s is an integer.\n", str);
-	    printf("\n");
-	}
-	else{// otherwise it is a real number so print this
-	    printf("String %s is a real number.\n", str);
-	    printf("\n");
-	}
+        typedef enum {false, true} bool;
+        bool is_integer = true;
+        int i;
+        for(i = 0; i < strlen(str); i++) //go through each character in the string looking for a period and the period is not the last character
+            {
+                if(str[i] == 46 && i != strlen(str)-1)// if there is a period and it is not the last character then it is not an integer
+                    {
+                        is_integer = false;
+                    }
+            }
+        if(is_integer){ //if it's an integer print this
+            printf("String <%s> is an integer.\n", str);
+        }
+        else{// otherwise it is a real number so print this
+            printf("String <%s> is a real number.\n", str);
+        }
 }
 
