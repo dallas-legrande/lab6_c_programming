@@ -1,8 +1,3 @@
-#include <stdio.h>
-#include <string.h>
-#include "lab6.h"
-
-/* Author: Dallas LeGrande
  * csci112 lab6
  * Date: March 20, 2018
  * This program will read a string from a file and answer questions about the string
@@ -19,6 +14,11 @@ void test(char *word)
         printf("It is of length %d\n", length);
         upper(word);
         lower(word);
+        printf("\n");
+}
+
+void test2(char *word)
+{
         strnum(word);
         printf("\n");
 }
@@ -26,24 +26,38 @@ void test(char *word)
 int main(int argc, char** argv)
 {
         printf("\n"); //prints a blank line to differentiate where the program starts from the line commands
-        char str[100]; //variable to hold the string being read in
-        char copy[100]; //place to copy the read in string so that it can be manipulated
+        char str1[100]; //variable to hold the string being read in
+        char str2[100];
+        char copy1[100]; //place to copy the read in string so that it can be manipulated
+        char copy2[100]; //place to copy the read in string so that it can be manipulated
         char* word;
+        char* num;
+        char c;
 
-        scanf("%[^\n]s",&str); //%[^\n]s reads the line until it hits an \n
-        //printf("This is the string that is read in %s\n", str);
-        strcpy(copy, str); //copies the read in string to another variable
-        //printf("This is copy %s\n", copy);
-        word = strtok(copy, " "); //separates the string into words every time there is a space
+        fgets(str1,50, stdin);
+        scanf("%[^\n]s",&str2); //%[^\n]s reads the line until it hits an \n
+        strcpy(copy1, str1); //copies the read in string to another variable
+        strcpy(copy2, str2); //copies the read in string to another variable
+        word = strtok(copy1, " "); //separates the string into words every time there is a space
         test(word); //Tests the first word in the string
-
-//      printf("This is the first word %s\n", word);
-        while(word != NULL) //continues going through the string until the word equals  NULL
+        while(word != NULL) //continues going through the string making tokens until the word equals NULL
             {
                 word = strtok(NULL, " "); //tokens the string. Since the string being tokened is NULL is continues on from the original string passed in finding each successive word
-                if(word != NULL){ //once the token gets to the end it will set word to NULL. Do not want NULL to be tested so if statement added
+                if(word != NULL) //once the token gets to the end it will set word to NULL. Do not want NULL to be tested so if statement added
+                {
                     test(word); //tests each word as it is tokenized
+                }//end of if
+            }//end of while
+        num = strtok(copy2, " ");
+        test2(num);
+        while(num != NULL) //continues going through the string making tokens until the word equals NULL
+            {
+                num = strtok(NULL, " "); //tokens the string. Since the string being tokened is NULL is continues on from the original string passed in finding each successive word
+                if(num != NULL) //once the token gets to the end it will set word to NULL. Do not want NULL to be tested so if statement added
+                {
+                    test2(num); //tests each word as it is tokenized
                 }//end of if
             }//end of while
         return (0);
 }
+         
