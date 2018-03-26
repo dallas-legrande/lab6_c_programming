@@ -1,3 +1,8 @@
+#include <stdio.h>
+#include <string.h>
+#include "lab6.h"
+
+/* Author: Dallas LeGrande
  * csci112 lab6
  * Date: March 20, 2018
  * This program will read a string from a file and answer questions about the string
@@ -26,15 +31,20 @@ void test2(char *word)
 int main(int argc, char** argv)
 {
         printf("\n"); //prints a blank line to differentiate where the program starts from the line commands
+        char temp[100];
         char str1[100]; //variable to hold the string being read in
         char str2[100];
         char copy1[100]; //place to copy the read in string so that it can be manipulated
         char copy2[100]; //place to copy the read in string so that it can be manipulated
         char* word;
         char* num;
-        char c;
 
-        fgets(str1,50, stdin);
+        fgets(temp,50, stdin); //reads the first line of the file
+        if(temp > 0 && temp[strlen(temp)-1] == '\n')//takes the end of line character at the end of the string and removes it
+                {
+                        temp[strlen(temp)-1] = '\0';
+                }
+        strncpy(str1, temp, strlen(temp)+1); //copies the string to a new string
         scanf("%[^\n]s",&str2); //%[^\n]s reads the line until it hits an \n
         strcpy(copy1, str1); //copies the read in string to another variable
         strcpy(copy2, str2); //copies the read in string to another variable
@@ -50,7 +60,7 @@ int main(int argc, char** argv)
             }//end of while
         num = strtok(copy2, " ");
         test2(num);
-        while(num != NULL) //continues going through the string making tokens until the word equals NULL
+          while(num != NULL) //continues going through the string making tokens until the word equals NULL
             {
                 num = strtok(NULL, " "); //tokens the string. Since the string being tokened is NULL is continues on from the original string passed in finding each successive word
                 if(num != NULL) //once the token gets to the end it will set word to NULL. Do not want NULL to be tested so if statement added
@@ -60,4 +70,3 @@ int main(int argc, char** argv)
             }//end of while
         return (0);
 }
-         
