@@ -16,8 +16,8 @@ void test(char *word)
 {
         int length = strlen(word);
         palin(word);
-        printf("The first character is %c\n", word[0]);
-        printf("It is of length %d\n", length);
+        printf("The first character is <%c>\n", word[0]);
+        printf("It is of length <%d>\n", length);
         upper(word);
         lower(word);
         printf("\n");
@@ -60,7 +60,7 @@ int main(int argc, char** argv)
             }//end of while
         num = strtok(copy2, " "); //starts checking the second line for its questions
         test2(num);
-        while(num != NULL) //continues going through the string making tokens until the word equals NULL
+         while(num != NULL) //continues going through the string making tokens until the word equals NULL
             {
                 num = strtok(NULL, " "); //tokens the string. Since the string being passed in  is NULL it continues on from the original string passed in finding each successive word
                 if(num != NULL) //once the token gets to the end it will set word to NULL. Do not want NULL to be tested so, if statement added to check for that null
